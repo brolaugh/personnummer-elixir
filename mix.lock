@@ -1,0 +1,4 @@
+%{
+  "luhn": {:hex, :luhn, "0.3.1", "c8c38ee131378cff925fc9dad825fc85ecd9593fcec10dbba550d26bb1744af5", [:mix], [], "hexpm"},
+  "luhnatex": {:hex, :luhnatex, "0.5.1", "3f14d4553991354d381170d3e1b00d6ba812b64ed6c3903b40d4373827bada0d", [:mix], [], "hexpm"},
+}

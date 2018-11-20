@@ -14,6 +14,7 @@ defmodule Personnummer.MixProject do
       ],
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env() == :prod,
+      test_coverage: [tool: ExCoveralls],
       deps: deps()
     ]
   end
@@ -28,8 +29,7 @@ defmodule Personnummer.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+      {:excoveralls, "~> 0.3", only: :dev},
       {:luhnatex, "~> 0.5.1"}
     ]
   end

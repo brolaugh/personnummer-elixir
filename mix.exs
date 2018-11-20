@@ -30,7 +30,7 @@ defmodule Personnummer.MixProject do
   defp deps do
     [
       {:excoveralls, "~> 0.3", only: :dev},
-      {:luhnatex, "~> 0.5.1"}
+      {:luhn, "~> 0.3"}
     ]
   end
 end

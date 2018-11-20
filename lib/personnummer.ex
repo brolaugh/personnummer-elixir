@@ -5,9 +5,9 @@ defmodule Personnummer do
 
   @spec valid_date_part?(integer(), integer(), integer()) :: boolean()
   defp valid_date_part?(year, month, day) do
-    {result, _} = Date.new(year, month, day)
-    {result2, _} = Date.new(year, month, day - 60)
-    result == :ok || result2 == :ok
+    {social_security_success, _} = Date.new(year, month, day)
+    {coordination_success, _} = Date.new(year, month, day - 60)
+    social_security_success == :ok || coordination_success == :ok
   end
 
   @doc """

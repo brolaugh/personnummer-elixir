@@ -8,7 +8,9 @@ defmodule Personnummer do
 
   ## Examples
 
-      iex> Personnummer.valid?(social_security_number)
+      iex> Personnummer.valid?(6403273813)
+      true
+      iex> Personnummer.valid?("19130401+2931")
       true
 
   """

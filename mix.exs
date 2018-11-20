@@ -29,7 +29,7 @@ defmodule Personnummer.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:excoveralls, "~> 0.3", only: :dev},
+      {:excoveralls, "~> 0.3", only: :test},
       {:luhn, "~> 0.3"}
     ]
   end

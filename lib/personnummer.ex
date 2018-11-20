@@ -3,6 +3,13 @@ defmodule Personnummer do
   Documentation for Personnummer.
   """
 
+  @spec valid_date_part?(integer(), integer(), integer()) :: boolean()
+  defp valid_date_part?(year, month, day) do
+    {result, _} = Date.new(year, month, day)
+    {result2, _} = Date.new(year, month, day - 60)
+    result == :ok || result2 == :ok
+  end
+
   @doc """
   Validate Swedish social security number.
 
@@ -14,9 +21,11 @@ defmodule Personnummer do
       true
 
   """
-  def valid?(value)
+  def valid?(value) when is_integer(value) == false and is_binary(value) == false do
+    false
+  end
 
-  def valid?(value) when is_integer(value) do 
+  def valid?(value) when is_integer(value) do
     value
     |> to_string()
     |> valid?()
@@ -28,21 +37,27 @@ defmodule Personnummer do
     if(matches == nil or length(matches) < 1 or length(matches) < 7 ) do
       false
     else
-      {full_year, _} = Enum.at(matches, 1) <> Enum.at(matches, 2)
-                  |> Integer.parse()
-      {year, _} = Enum.at(matches, 2)
-                  |> Integer.parse()
-      {month, _} = Enum.at(matches, 3) 
-                  |> Integer.parse()
-      {day, _} = Enum.at(matches, 4)
-                  |> Integer.parse()
+      year    = Enum.at(matches, 2)
+      month   = Enum.at(matches, 3)
+      day     = Enum.at(matches, 4)
+      num     = Enum.at(matches, 6)
+      check   = Enum.at(matches, 7)
 
-      {date_result, _} = Date.new(year, month, day)
-      {full_date_result, _} = Date.new(full_year, month, day)
+      valid = Luhn.valid?(year <> month <> day <> num <> check)
 
-      ( date_result == :ok or full_date_result == :ok ) &&
-      Enum.at(matches, 2) <> Enum.at(matches, 3) <> Enum.at(matches, 4) <> Enum.at(matches,6) <> Enum.at(matches, 7)
-      |> Luhn.valid?()
+      # The regex should have filtered out any input that would cause this block to crash
+      year_i = year
+        |> Integer.parse()
+        |> elem(0)
+      month_i = month
+        |> Integer.parse()
+        |> elem(0)
+      day_i = day
+        |> Integer.parse()
+        |> elem(0)
+
+      valid and valid_date_part?(year_i, month_i, day_i)
+
     end
   end
 end

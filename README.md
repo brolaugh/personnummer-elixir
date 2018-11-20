@@ -1,5 +1,5 @@
 # Personnummer
-Validate Swedish socila security numbers.
+Validate Swedish social security numbers.
 
 ## Installation
 

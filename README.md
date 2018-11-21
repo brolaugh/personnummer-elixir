@@ -1,6 +1,6 @@
 # Personnummer
 Validate Swedish social security numbers.
-
+[![Build Status](https://travis-ci.org/brolaugh/personnummer-elixir.svg?branch=master)](https://travis-ci.org/brolaugh/personnummer-elixir)[![Coverage Status](https://coveralls.io/repos/github/brolaugh/personnummer-elixir/badge.svg?branch=master)](https://coveralls.io/github/brolaugh/personnummer-elixir?branch=master)
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed

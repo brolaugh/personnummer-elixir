@@ -5,7 +5,7 @@ defmodule Personnummer.MixProject do
     [
       app: :personnummer,
       version: "0.1.0",
-      elixir: "~> 1.6",
+      elixir: "~> 1.3",
       description: "Validate swedish social security numbers",
       package: [
         maintainers: ["Hannes Kindströmmer"],

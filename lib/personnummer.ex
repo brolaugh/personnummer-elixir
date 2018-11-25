@@ -7,13 +7,17 @@ defmodule Personnummer do
     {coordination_success, _} = Date.new(year, month, day - 60)
     social_security_success == :ok || coordination_success == :ok
   end
-  
+
   defp fix_seperator(candidate) do
     if(String.length(candidate) != 1) do
       "-"
     else
       candidate
     end
+  end
+
+  def number_to_gender(number) when is_integer(number) do
+    if rem(number, 2) == 1, do: :man, else: :woman
   end
 
   defp validate_map(candidate) when is_map(candidate) do
@@ -36,7 +40,7 @@ defmodule Personnummer do
       |> Luhn.valid?()
 
     cond do
-      !valid_luhn -> 
+      !valid_luhn ->
         :invalid_luhn
       !valid_date_part?(candidate.year, candidate.month, candidate.day) ->
         :invalid_date
@@ -76,6 +80,10 @@ defmodule Personnummer do
       check: Enum.at(list, 7)
         |> Integer.parse()
         |> elem(0),
+      gender: Enum.at(list, 6)
+        |> Integer.parse()
+        |> elem(0)
+        |> number_to_gender()
     }
   end
 
@@ -87,7 +95,7 @@ defmodule Personnummer do
   def parse(value) when is_integer(value) == false and is_binary(value) == false do
     {:error, :invalid_type}
   end
-  
+
   def parse(value) when is_integer(value) do
     value
       |> Integer.to_string()
@@ -101,7 +109,7 @@ defmodule Personnummer do
       {:error, :invalid_format}
     else
       map = to_map(matches)
-      
+
       validation_result = validate_map(map)
 
       if(validation_result === :ok) do

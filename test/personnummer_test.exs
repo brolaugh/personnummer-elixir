@@ -1,7 +1,12 @@
 defmodule PersonnummerTest do
   use ExUnit.Case
   doctest Personnummer
-  
+
+  test "valid?/1 function" do
+    assert Personnummer.valid?("510818-9167") == true
+    assert Personnummer.valid?("640327-381") == false
+  end
+
   test "valid strings" do
     assert elem(Personnummer.parse("510818-9167"), 0) == :ok
     assert elem(Personnummer.parse("19900101-0017"), 0) == :ok
@@ -9,7 +14,8 @@ defmodule PersonnummerTest do
     assert elem(Personnummer.parse("196408233234"), 0) == :ok
     assert elem(Personnummer.parse("0001010107"), 0) == :ok
   end
-  test "invalid strings" do
+
+  test "invalid formated strings" do
     assert Personnummer.parse("640327-381") == {:error, :invalid_format}
     assert Personnummer.parse("510818-916") == {:error, :invalid_format}
     assert Personnummer.parse("19900101-001") == {:error, :invalid_format}
@@ -21,11 +27,12 @@ defmodule PersonnummerTest do
     assert elem(Personnummer.parse(5108189167), 0) == :ok
     assert elem(Personnummer.parse(199001010017), 0) == :ok
   end
+
   test "invalid ints" do
-    assert elem(Personnummer.parse(640327381), 0) == :error
-    assert elem(Personnummer.parse(510818916), 0) == :error
-    assert elem(Personnummer.parse(19900101001), 0) == :error
-    assert elem(Personnummer.parse(100101001), 0) == :error
+    assert Personnummer.parse(640327381) == {:error, :invalid_format}
+    assert Personnummer.parse(510818916) == {:error, :invalid_format}
+    assert Personnummer.parse(19900101001) == {:error, :invalid_format}
+    assert Personnummer.parse(100101001) == {:error, :invalid_format}
   end
 
   test "valid coordination strings" do
@@ -42,8 +49,8 @@ defmodule PersonnummerTest do
     assert elem(Personnummer.parse(6408833231), 0) == :ok
   end
   test "invalid coordination ints" do
-    assert elem(Personnummer.parse(9001610017), 0) == :error
-    assert elem(Personnummer.parse(6408933231), 0) == :error
+    assert Personnummer.parse(9001610017) == {:error, :invalid_luhn}
+    assert Personnummer.parse(6408933231) == {:error, :invalid_luhn}
   end
 
   test "invalid types" do

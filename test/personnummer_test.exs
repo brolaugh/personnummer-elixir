@@ -2,7 +2,9 @@ defmodule PersonnummerTest do
   use ExUnit.Case
   doctest Personnummer
 
-  test "valid?/1 function" do
+  test "valid?/1" do
+    IO.inspect Personnummer.parse("510818-9167")
+
     assert Personnummer.valid?("510818-9167") == true
     assert Personnummer.valid?("640327-381") == false
   end
@@ -68,5 +70,12 @@ defmodule PersonnummerTest do
     assert Personnummer.parse(:"510818+9167") == {:error, :invalid_type }
     assert Personnummer.parse(:"510818-9167") == {:error, :invalid_type }
     assert Personnummer.parse(:"5108189167") == {:error, :invalid_type }
+  end
+
+  test "gender setter" do
+    assert Personnummer.number_to_gender(0) == :female
+    assert Personnummer.number_to_gender(1) == :male
+    assert Personnummer.number_to_gender(2) == :female
+    assert Personnummer.number_to_gender(3) == :male
   end
 end

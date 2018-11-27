@@ -110,6 +110,13 @@ defmodule Personnummer do
       |> parse()
   end
 
+  @doc """
+  Parses a swedish social security number
+
+  ## Examples
+  iex> Personnummer.parse("510818-9167")
+  {:ok, %{ check: 7, day: 18, gender: :female, month: 8, number: 916, seperator: "-", year: 51 }}
+  """
   def parse(value) when is_binary(value) and is_nil(value) == false do
     {match_result, matches} = regex_match(value)
 

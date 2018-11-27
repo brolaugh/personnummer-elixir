@@ -50,7 +50,7 @@ defmodule Personnummer do
       end
   end
 
-  def regex_match(value) do
+  defp regex_match(value) do
     matches = Regex.run(~r/^(\d{2}){0,1}(\d{2})(\d{2})(\d{2})([-|+]{0,1})?(\d{3})(\d{1})$/, value)
 
     if(matches == nil or length(matches) < 7 ) do

@@ -1,6 +1,6 @@
 defmodule Personnummer do
   @moduledoc """
-  Documentation for Personnummer.
+  A module to make the usage of Swedish social security numbers easier.
   """
   defp valid_date_part?(year, month, day) do
     {social_security_success, _} = Date.new(year, month, day)

@@ -86,7 +86,14 @@ defmodule Personnummer do
         |> number_to_gender()
     }
   end
-
+  @doc """
+  Validate Swedish social security number.
+  ## Examples
+      iex> Personnummer.valid?(6403273813)
+      true
+      iex> Personnummer.valid?("19130401+2931")
+      true
+  """
   def valid?(value) do
     {success, _} = parse(value)
     success === :ok

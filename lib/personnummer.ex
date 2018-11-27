@@ -16,8 +16,9 @@ defmodule Personnummer do
     end
   end
 
+  
   def number_to_gender(number) when is_integer(number) do
-    if rem(number, 2) == 1, do: :man, else: :woman
+    if rem(number, 2) == 1, do: :male, else: :female
   end
 
   defp validate_map(candidate) when is_map(candidate) do

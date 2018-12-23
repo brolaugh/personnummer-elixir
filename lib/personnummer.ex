@@ -16,7 +16,15 @@ defmodule Personnummer do
     end
   end
 
-  
+  @doc """
+  Converts a number to a gender. This is the last digit in a personnummer before the luhn check digit.
+
+  ## Examples
+      iex> Personnummer.number_to_gender(4)
+      :female
+      iex> Personnummer.number_to_gender(5)
+      :male
+  """
   def number_to_gender(number) when is_integer(number) do
     if rem(number, 2) == 1, do: :male, else: :female
   end
@@ -61,9 +69,8 @@ defmodule Personnummer do
   end
 
   defp to_map(list) when is_nil(list) == false do
+    # The century is not part of the standard and is therefor not part of the map
     %{
-      #short_form = fn -> do to_string(year) <> to_string(month) <> to_string(day) <> number <> to_string(check) end
-      #long_form = fn -> do to_string(year) <> to_string(month) <> to_string(day) <> seperator <> number <> to_string(check) end
       year: Enum.at(list, 2)
         |> Integer.parse()
         |> elem(0),

@@ -1,6 +1,9 @@
 # Personnummer
+[![hex.pm version](https://img.shields.io/hexpm/v/personnummer.svg)](https://hex.pm/packages/personnummer)[![Build Status](https://travis-ci.org/brolaugh/personnummer-elixir.svg?branch=master)](https://travis-ci.org/brolaugh/personnummer-elixir)[![Coverage Status](https://coveralls.io/repos/github/brolaugh/personnummer-elixir/badge.svg?branch=master)](https://coveralls.io/github/brolaugh/personnummer-elixir?branch=master)[![hex.pm weekly downloads](https://img.shields.io/hexpm/dw/personnummer.svg)](https://hex.pm/packages/personnummer) [![hex.pm downloads](https://img.shields.io/hexpm/dt/personnummer.svg)](https://hex.pm/packages/personnummer)
+
 Validate Swedish social security numbers.
-[![Build Status](https://travis-ci.org/brolaugh/personnummer-elixir.svg?branch=master)](https://travis-ci.org/brolaugh/personnummer-elixir)[![Coverage Status](https://coveralls.io/repos/github/brolaugh/personnummer-elixir/badge.svg?branch=master)](https://coveralls.io/github/brolaugh/personnummer-elixir?branch=master)
+
+
 ## Installation
 
 The package can be installed
